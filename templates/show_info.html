@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block bodyleft %}
+<div class="content">
+	<h2>{{ show.title }}</h2>
+	{{ show.description }}
+
+	{% if show.notes %}
+		<h3>Note</h3>
+		{{ show.notes }}
+	{% endif %}
+
+	<h3>Info</h3>
+	Autori: {% for author in show.authors.all %} {{ author.username }} {% endfor %}
+</div>
+{% endblock %}

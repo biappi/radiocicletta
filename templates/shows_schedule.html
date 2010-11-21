@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block morestyles %}
+	<link rel="stylesheet" type="text/css" href="/media/fullcalendar/fullcalendar.css" />
+{% endblock %}
+
+{% block morescripts %}
+    <script type="text/javascript" src="/media/full_calendar_w.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$('#calendar').fullCalendar({
+		header: false,
+		allDaySlot: false,
+                defaultView: 'agendaWeek',
+                dayNames: ['Domenica','Lunedi','Martedi','Mercoledi','Giovedi','Venerdi','Sabato'],
+                dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+                monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+                monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'],
+                firstDay: 1,
+		firstHour: 12,
+
+		events: [
+		{% for show in schedule %}
+			{
+				title: '{{ show.title|addslashes }}',
+				start: {{ show.start }},
+				end: {{ show.end }},
+				allDay: false,
+				url: '{{ show.url|addslashes }}'
+			},
+		{% endfor %}
+		]
+
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block bodyleft %}
+	 <div class="content">
+	 	<h2>Palinsesto</h2>
+		<p>
+	 	<div id="calendar"></div>
+	</div>
+{% endblock %}

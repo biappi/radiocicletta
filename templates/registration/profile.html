@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block bodyleft %}
+<div class="content">
+	{% if user.is_authenticated %}
+	<h2>Benvenuto</h2>
+	{% else %}
+	<h2>Malvenuto</h2>
+	{% endif %}
+	
+</div>
+{% endblock %}

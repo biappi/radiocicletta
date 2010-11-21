@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block bodyleft %}
+<div class="content">
+	{% if page %}
+		<h2>{{ page.title }}</h2>
+	
+		{{ page.text }}
+	{% else %}
+		<h2>Pagina finta</h2>
+		<p>Usa "Modifica Questa Pagina" se vuoi mettere della roba qui</p>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block moreauthmenu %}
+<li><a href="edit">Modifica questa pagina</a></li>
+{% endblock %}

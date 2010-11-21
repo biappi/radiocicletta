@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block bodyleft %}
+<div class="content">
+	{% for post in posts %}
+		<h2><a href="{{ post.get_absolute_url }}">{% if post.draft %}BOZZA - {% endif %}{{ post.title }}</a></h2>
+	
+		<ul class="metadata">
+			<li><a href="{{ post.author.get_absolute_url }}">Autore {{ post.author }}</a></li>
+			<li>{{ post.date|date:"j F, Y" }}</li>
+			<!-- <li><a href="{{ post.get_absolute_url }}#comment">{{ post.comment_count }} Commenti</a></li> -->
+		</ul>
+		
+		{{ post.text }}
+	{% endfor %}
+</div>
+{% endblock %}
