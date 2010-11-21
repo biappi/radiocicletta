@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Radiocicletta</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="content-language" content="it" />
+      </head>
+   <body>
+		<div align="center">
+		<object type="application/x-shockwave-flash" 
+		width="1024" height="15" 
+		data="http://www.radiocicletta.it/xspf_player.swf?song_url=http://www.radiocicletta.it:8000/stream&song_title=Radiocicletta%20Live&autoplay=1"> 
+		<param name="movie" value="http://www.radiocicletta.it/xspf_player.swf?song_url=http://www.radiocicletta.it:8000/stream&song_title=Radiocicletta%20Live&autoplay=1" /> 
+		</object> 
+		
+		<h2><p>Chat di Radiocicletta:</p></h2>
+		<iframe width="1024" height="500" frameborder="0" 
+				 src="http://widget.mibbit.com/?settings=5409caa9ef3a2c146ba71deda3687ac3&server=tophost.azzurra.org&channel=%23radiocicletta">
+		</iframe>
+		</div>
+</div> 
+
+   
+   </body>
+</html>
+

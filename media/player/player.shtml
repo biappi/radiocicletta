@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Radiocicletta</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="content-language" content="it" />
+	  	<script type="text/javascript">
+					function openPopUp(url,target,attributes) 
+					{	
+						
+						popup = window.open(url,target,attributes);
+						popup.resizeTo(window.screen.availWidth, window.screen.availHeight);
+						
+					}
+		</script>
+      </head>
+   <body>
+		<div aling:>
+		<object type="application/x-shockwave-flash" 
+		width="500" height="15" 
+		data="xspf_player.swf?song_url=http://www.radiocicletta.it:8000/stream&song_title=Radiocicletta%20Live&autoplay=1"> 
+		<param name="movie" value="xspf_player.swf?song_url=http://www.radiocicletta.it:8000/stream&song_title=Radiocicletta%20Live&autoplay=1" /> 
+		</object> 
+		</div>
+		<div>
+		<h2><p>Chat di Radiocicletta:</p></h2>
+		<iframe width="500" height="300" frameborder="0" 
+				 src="http://widget.mibbit.com/?settings=5409caa9ef3a2c146ba71deda3687ac3&server=tophost.azzurra.org&channel=%23radiocicletta">
+		</iframe>
+		<br/>
+		<br/>
+		per il formato full-screen clicca
+		<a href="javascript:void(0); windows.close();" onclick="openPopUp('player2.shtml','_new','channelmode=no,directories=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=640,height=480')">qui</a> 
+		</div>
+   
+   </body>
+</html>
+
