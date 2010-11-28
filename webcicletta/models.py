@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from tools import purifica_html
 class Post(models.Model):
 	class Admin: pass
         title = models.CharField(maxlength=1024)
@@ -42,7 +42,7 @@ class Show(models.Model):
 	authors = models.ManyToManyField(User,blank=True)
 	
 	def is_current(self): return get_current_show().title_slug == self.title_slug
-
+	def get_purified_desc(self): return purifica_html(self.description)
 	def __str__(self): return self.title
 
 	@models.permalink

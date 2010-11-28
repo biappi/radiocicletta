@@ -103,7 +103,8 @@ def shows(request):
 				'title': x.show.title,
 				'start': to_js_date(datetime.datetime.combine(monday + x.delta_from_monday(), x.begin)),#time_to_jstime(monday + x.begin_timedelta_from_monday()),
 				'end': to_js_date(datetime.datetime.combine(monday + x.delta_from_monday(), x.end)),#time_to_jstime(monday + x.end_timedelta_from_monday())
-				'url': x.show.get_absolute_url()
+				'url': x.show.get_absolute_url(),
+				'desc': x.show.get_purified_desc()
 			}
 
 	shows = map(do_dict, ShowSchedule.objects.all())

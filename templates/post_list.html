@@ -1,17 +1,34 @@
 {% extends "base.html" %}
-
+{% block morescripts %}
+<script type="text/javascript">//trucchetto perchè funzioni tutto anche a js disabltato
+	//nascondo gli atricoli per l'animazione via js, se non ce l'hai non ti vengono nascosti! VIVA!
+	document.write('<style>article {display:none;}</style>');
+</script>
+<script type="text/javascript" src="/media/jquery.js"></script>
+<script type="text/javascript" src="/media/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {	
+ 		$('#headmenu > li').click(function(){
+		$("article").hide("blind", {}, 300);
+		});
+	});
+</script>
+{% endblock %}
 {% block bodyleft %}
 <div class="content">
 	{% for post in posts %}
+		<article>
 		<h2><a href="{{ post.get_absolute_url }}">{% if post.draft %}BOZZA - {% endif %}{{ post.title }}</a></h2>
-	
 		<ul class="metadata">
 			<li><a href="{{ post.author.get_absolute_url }}">Autore {{ post.author }}</a></li>
 			<li>{{ post.date|date:"j F, Y" }}</li>
 			<!-- <li><a href="{{ post.get_absolute_url }}#comment">{{ post.comment_count }} Commenti</a></li> -->
 		</ul>
-		
 		{{ post.text }}
+	</article>
 	{% endfor %}
+	<script>
+	$(document).ready(function() $("article:eq(0)").show("slow", function () {$(this).next("article").show("800", arguments.callee);});});
+	</script>
 </div>
 {% endblock %}
