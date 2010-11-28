@@ -3,13 +3,13 @@ html {
 }
 
 body{ 
-   background: black url(pagebg.png) repeat-x center 80px;
+   background: black url(/media/images/pagebg.png) repeat-x center 80px;
    font-family: Helvetica, Arial, sans-serif;
 }
 
 header { 
    height: 82px;
-   background: transparent url(headbg.png) repeat-x left top;
+   background: transparent url(/media/images/headbg.png) repeat-x left top;
    display: block;
 }
 

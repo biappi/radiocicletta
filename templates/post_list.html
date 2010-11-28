@@ -4,8 +4,8 @@
 	//nascondo gli atricoli per l'animazione via js, se non ce l'hai non ti vengono nascosti! VIVA!
 	document.write('<style>article {display:none;}</style>');
 </script>
-<script type="text/javascript" src="/media/jquery.js"></script>
-<script type="text/javascript" src="/media/jquery-ui.js"></script>
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {	
  		$('#headmenu > li').click(function(){
@@ -28,7 +28,7 @@
 	</article>
 	{% endfor %}
 	<script>
-	$(document).ready(function() $("article:eq(0)").show("slow", function () {$(this).next("article").show("800", arguments.callee);});});
+	$(document).ready(function() {$("article:eq(0)").show("slow", function () {$(this).next("article").show("800", arguments.callee);});});
 	</script>
 </div>
 {% endblock %}

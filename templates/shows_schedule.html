@@ -1,47 +1,44 @@
 {% extends "base.html" %}
 
 {% block morestyles %}
-	<link rel="stylesheet" type="text/css" href="/media/fullcalendar/fullcalendar.css" />
-<link href="/media/jquery.tweet.css" media="all" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/media/css/fullcalendar.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/jquery.tweet.css" media="all"/>
 {% endblock %}
 
 {% block morescripts %}
-        <script type="text/javascript" src="/media/jquery.js"></script>
-	<script type="text/javascript" src="/media/jquery-ui.js"></script>
-      	<script type="text/javascript" src="/media/qtip.js"></script> 
-	<script language="javascript" src="/media/jquery.tweet.js" type="text/javascript"></script> 
-    	<script type="text/javascript" src="/media/full_calendar_w.js"></script>
-	<script type="text/javascript">
-
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/media/js/qtip.js"></script> 
+<script type="text/javascript" src="/media/js/jquery.tweet.js" type="text/javascript"></script> 
+<script type="text/javascript" src="/media/js/full_calendar_w.js"></script>
+<script type="text/javascript">
 		$(document).ready(function() {
-
-
-$(document).ready(function() {	
-	  $('#tweet table').tweet({
-            username: "radiocicletta",
-            join_text: "auto",
-            avatar_size: 32,
-            count: 3,
-            auto_join_text_default: "we said,",
-            auto_join_text_ed: "we",
-            auto_join_text_ing: "we were",
-            auto_join_text_reply: "we replied to",
-            auto_join_text_url: "we were checking out",
-            loading_text: "loading tweets..."
-        });
-});
-			$('#calendar').fullCalendar({
-		header: false,
-		allDaySlot: false,
-                defaultView: 'agendaWeek',
-                dayNames: ['Domenica','Lunedi','Martedi','Mercoledi','Giovedi','Venerdi','Sabato'],
-                dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
-                monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
-                monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'],
-                firstDay: 1,
-		firstHour: 12,
-		events: [
-		{% for show in schedule %}
+			$(document).ready(function() {	
+	  			$('#tweet table').tweet({
+            				username: "radiocicletta",
+            				join_text: "auto",
+            				avatar_size: 32,
+            				count: 3,
+            				auto_join_text_default: "we said,",
+            				auto_join_text_ed: "we",
+            				auto_join_text_ing: "we were",
+            				auto_join_text_reply: "we replied to",
+            				auto_join_text_url: "we were checking out",
+            				loading_text: "loading tweets..."
+        			});
+			});
+		$('#calendar').fullCalendar({
+		  header: false,
+		  allDaySlot: false,
+                  defaultView: 'agendaWeek',
+                  dayNames: ['Domenica','Lunedi','Martedi','Mercoledi','Giovedi','Venerdi','Sabato'],
+                  dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+                  monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+                  monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'],
+                  firstDay: 1,
+		  firstHour: 12,
+		  events: [
+			{% for show in schedule %}
 			{
 				title: '{{ show.title|addslashes }}',
 				start: {{ show.start }},
@@ -50,26 +47,18 @@ $(document).ready(function() {
 				url: '{{ show.url|addslashes }}',
 				desc: '{{ show.desc }}'
 			},
-		{% endfor %}
-		],
-eventRender: function(event, element) {
-    element.qtip({
-        content: '<b>'+event.title+'</b><br/> <small>'+event.desc+'</small>',
-style: { border: {
-         width: 3,
-         radius: 8,
-      },
-      tip: 'topLeft',
-      name: 'blue' // Inherit the rest of the attributes from the preset dark style
-   }
-    });
-}
+			{% endfor %}
+			],
+		  eventRender: function(event, element) {
+    		  	element.qtip({content: '<b>'+event.title+'</b><br/> <small>'+event.desc+'</small>',
+				      style: { border: {width: 3,radius: 8},tip: 'topLeft',name: 'blue'}
+				    });
+		}
 
-			});
 		});
-	</script>
+		});
+</script>
 {% endblock %}
-
 {% block bodyleft %}
 	 <div class="content">
 	 	<h2>Palinsesto</h2>
@@ -79,9 +68,9 @@ style: { border: {
 {% endblock %}
 {% block bodyright-box %}
  <div class="box">
-	           <h2>Twitter News</h2>
- <div id="tweet">
-   <table ></table >
-  </div>  
+		<h2>Twitter News</h2>
+ 		<div id="tweet">
+   		<table ></table >
+  		</div>  
 </div>
 {% endblock %}
