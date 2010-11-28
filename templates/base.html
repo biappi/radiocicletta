@@ -1,118 +1,115 @@
 <!DOCTYPE html>
 <html lang="it">
-   <head>
-      <title>Radiocicletta</title>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta http-equiv="content-language" content="it" />
-      <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"/>
-      <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-      {% block morestyles %}{% endblock %}
-      <script type="text/javascript" src="/media/js/jquery.js"></script>
-      <script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
-      <script type="text/javascript">
-      function openPopUp(url,target,attributes) 
-      {
-           popup = window.open(url,target,attributes);
-           popup.moveTo((window.screen.availWidth -  520) / 2, (window.screen.availHeight - 450) / 2);//c
-      }
-      </script>
-      {% block morescripts %}{% endblock %}
-   </head>
-   <body>
-      <header>
-         <h1 id="headlogo"><a href="/">Radiocicletta</a></h1>
-         <ul id="headmenu">
-	    <li><a href="/">Home</a></li>
-            <li><a href="/shows/">Programmi</a></li>
-            <li><a href="/chisiamo/">Chi siamo</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/aiutaci/">Aiutaci!</a></li>
-         </ul>
-      </header>
-
-      <div id="onair">
-         <div id="fakebutton">
-<a href="javascript:void(0)" onclick="openPopUp('/media/player/player.shtml', '_new', 'channelmode=no,directories=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=520,height=450')">&nbsp;</a>
-	 </div>
-         <h2>Ora in onda:</h2>
-	 {% if user.is_authenticated %}
+    <head>
+        <title>Radiocicletta</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="content-language" content="it" />
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"/>
+        <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+        {% block morestyles %}{% endblock %}
+        <script type="text/javascript" src="/media/js/jquery.js"></script>
+        <script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+            function openPopUp(url,target,attributes) 
+            {
+                popup = window.open(url,target,attributes);
+                popup.moveTo((window.screen.availWidth  - 520) / 2,
+                             (window.screen.availHeight - 450) / 2);
+            }
+            
+            function openPlayer()
+            {
+                openPopUp('/media/player/player.shtml',
+                          '_new',
+                          'channelmode=no,directories=no,toolbar=no,location=no,status=no,'+
+                          'menubar=no,scrollbars=no,resizable=no,width=520,height=450');
+            }
+        </script>
+        {% block morescripts %}{% endblock %}
+    </head>
+    
+    <body>
+        <header>
+            <h1 id="headlogo"><a href="/">Radiocicletta</a></h1>
+            <ul id="headmenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shows/">Programmi</a></li>
+                <li><a href="/chisiamo/">Chi siamo</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/aiutaci/">Aiutaci!</a></li>
+            </ul>
+        </header>
+      
+        <div id="onair">
+            <div id="fakebutton"><a href="javascript:void(0)" onclick="openPlayer()">&nbsp</a></div>
+            <h2>Ora in onda:</h2>
+            {% if user.is_authenticated %}
                 <form action="/change_current_show/" method="POST">
-                        <select name="new_show">
+                    <select name="new_show">
                         {% for show in all_shows %}
-                                <option value="{{ show.title_slug }}"
-                                {% if show.is_current %}selected="selected"{% endif %}
-                                >{{ show.title }}</option>
+                            <option value="{{ show.title_slug }}"{% if show.is_current %} selected="selected"{% endif %}>{{ show.title }}</option>
                         {% endfor %}
-                        </select>
-                        <input type="submit" name="submit" value="Cambia show">
+                    </select>
+                    <input type="submit" name="submit" value="Cambia show">
                 </form>
-         {% else %}
+            {% else %}
+                <p>
+                    <a href="javascript:void(0)" onclick="openPlayer()">{{ current_show.title }}</a>
+                    {% if current_show.authors.all|length %}, con {% for a in current_show.authors.all %}{{ a }}, {% endfor %} {% endif %}
+                </p>
+            {% endif %}
+        </div>
 
-         <p>
-	 	<a href="javascript:void(0)" onclick="openPopUp('/media/player/player.shtml', '_new', 'channelmode=no,directories=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=520,height=450')">
-{{ current_show.title }}</a>{% if current_show.authors.all|length %}, con {% for a in current_show.authors.all %}{{ a }}, {% endfor %} {% endif %}
-	 </p>
-
-	{% endif %}
-      </div>
-
-      <div id="body">
-         <div id="bodyleft">
+        <div id="body">
+            <div id="bodyleft">
             {% block bodyleft %}{% endblock %}
-         </div>
-
-         <div id="bodyright">
-            {% block bodyright %}
-            <div class="content">
-               <div class="box">
-                  <h2>Beta!</h2>
-                  <p>Il sito che stai vedendo manca ancora di molte parti fondamentali. Torna a trovarci spesso per vedere
-                     tutte le novita' che aggiungeremo nel tempo!</p>
-               </div>
-			   
-               <div class="box">
-                  <h2>Social</h2>
-                  <ul class="social">
-                     <li><a class="facebook" href="http://www.facebook.com/group.php?gid=122353837775674&ref=share">Gruppo ufficiale su Facebook</a></li>
-                     <li><a class="lastfm" href="http://lastfm.it/group/radiocicletta">Gruppo ufficiale su last.fm</a></li>
-                     <li><a class="myspace" href="http://www.myspace.com/radiocicletta">Pagina ufficiale su Myspace</a></li>
-                     <li><a class="twitter" href="http://twitter.com/radiocicletta">Twitter</a></li>
-                     <li><a class="youtube" href="http://www.youtube.com/user/radiocicletta">Canale ufficiale su youtube</a></li>
-		     <!--
-                     <li><!--
-Skype 'My status' button
-http://www.skype.com/go/skypebuttons
---  
-<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-<a href="skype:radiocicletta?call"><img src="http://mystatus.skype.com/smallclassic/radiocicletta" style="border: none;" width="114" height="20" alt="My status" /></a>
-</li>-->
-                  </ul>
-               </div>
-
-	       <div class="box">
-	           <h2>Amministrazione</h2>
-		   <ul class="social">
-			{% if user.is_authenticated %}
-				<li><a href="/accounts/logout/">Esci</a></li>
-				<li><a href="/blog/new/">Nuovo post blog</a></li>
-				{% block moreauthmenu %}{% endblock %}
-			{% else %}
-				<li><a href="/accounts/login/">Sei dei nostri?</a></li>
-			{% endif %}
-                   </ul>
-	       </div>
-		{% block bodyright-box %}{% endblock %}
             </div>
-	    {% endblock %}
-         </div>
 
-         <div class="visualclear"></div>
-      </div>
-
-      <footer>
-         <address>Associazione culturale Radiocicletta &mdash; Pisa. <a href="mailto:radiocicletta@gmail.com">radiocicletta@gmail.com</a></address>
-      </footer>
-
-      &nbsp;
-   </body>
+            <div id="bodyright">
+                {% block bodyright %}
+                    <div class="content">
+                        <div class="box">
+                            <h2>Beta!</h2>
+                            <p>
+                                Il sito che stai vedendo manca ancora di molte parti fondamentali.
+                                Torna a trovarci spesso per vedere tutte le novita' che aggiungeremo
+                                nel tempo!
+                            </p>
+                        </div>
+                        
+                        <div class="box">
+                            <h2>Social</h2>
+                            <ul class="social">
+                                <li><a class="facebook" href="http://www.facebook.com/group.php?gid=122353837775674&ref=share">Gruppo ufficiale su Facebook</a></li>
+                                <li><a class="lastfm" href="http://lastfm.it/group/radiocicletta">Gruppo ufficiale su last.fm</a></li>
+                                <li><a class="myspace" href="http://www.myspace.com/radiocicletta">Pagina ufficiale su Myspace</a></li>
+                                <li><a class="twitter" href="http://twitter.com/radiocicletta">Twitter</a></li>
+                                <li><a class="youtube" href="http://www.youtube.com/user/radiocicletta">Canale ufficiale su youtube</a></li>
+                            </ul>
+                        </div>
+                    
+                        <div class="box">
+                            <h2>Amministrazione</h2>
+                            <ul class="social">
+                                {% if user.is_authenticated %}
+                                    <li><a href="/accounts/logout/">Esci</a></li>
+                                    <li><a href="/blog/new/">Nuovo post blog</a></li>
+                                    {% block moreauthmenu %}{% endblock %}
+                                {% else %}
+                                    <li><a href="/accounts/login/">Sei dei nostri?</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        {% block bodyright-box %}{% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+            
+            <div class="visualclear"></div>
+        </div>
+        
+        <footer>
+            <address>Associazione culturale Radiocicletta &mdash; Pisa. <a href="mailto:radiocicletta@gmail.com">radiocicletta@gmail.com</a></address>
+        </footer>
+    </body>
 </html>
