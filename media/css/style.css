@@ -1,0 +1,313 @@
+html {
+	background: black;
+}
+
+body{ 
+   background: black url(pagebg.png) repeat-x center 80px;
+   font-family: Helvetica, Arial, sans-serif;
+}
+
+header { 
+   height: 82px;
+   background: transparent url(headbg.png) repeat-x left top;
+   display: block;
+}
+
+header:after { clear: both }
+
+#headlogo {
+   height: 82px;
+   overflow: hidden;
+   width: 550px;
+   float: left;
+   margin: auto;
+}
+
+#headlogo a {
+   padding-left: 550px;
+   padding-top: 82px;
+   font-size: 82px;
+   background: transparent url(/media/images/headlogo.png) no-repeat 0px 0px;
+   overflow: hidden;
+}
+
+#headlogo a:hover {
+   background: transparent url(/media/images/headlogo.png) no-repeat 0px 82px;
+}
+
+#headmenu { 
+   height: 82px;
+   overflow: visible;
+   white-space: nowrap;
+   margin: auto;
+   float: left;
+}
+
+#headmenu:after {
+   clear: both
+}
+
+#headmenu li { 
+   float: left;
+   /*border-left: solid 1px gray;*/
+}
+
+#headmenu a {
+   display: block;
+   line-height: 82px;
+   padding: 8px 1em;
+   text-decoration: none;
+   color: gray; 
+   font-weight: bold;
+   text-shadow: white 0px 0px 3px ;
+}
+
+#headmenu a:hover {
+   text-shadow: #70bbfb 0px 0px 15px;
+   text-outline: 1px 1px #70bbfb;
+   color: white;
+}
+
+#onair {
+   width: 960px;
+   height: 46px;
+   margin: 20px auto;
+   background: transparent url(/media/images/onair.png) no-repeat top left;
+   line-height: 46px;
+   font-size: 10pt;
+   color: white;
+   clear: both;
+   position: relative;
+}
+
+#onair * {
+   display: inline;
+   color: white;
+}
+
+#onair #fakebutton {
+   position: absolute;
+   left: 38px;
+   width: 110px;
+}
+
+#onair #fakebutton a {
+   display: block;
+   width:100%;
+   height:100%;
+   text-decoration:none;
+   border-bottom:none;
+}
+
+#onair h2 {
+   margin-left: 160px;
+   margin-right: 0.3em;
+   font-weight: bold;
+   text-shadow: black 0px 0px 10px;
+}
+
+#onair a,
+#bodyleft p a,
+ul.metadata a{
+   border-bottom: dotted 1px gray;
+   text-decoration: none;
+}
+
+#onair a:hover,
+#bodyleft p a:hover,
+ul.metadata a:hover {
+   text-shadow: #70bbfb 0px 0px 15px;
+   text-outline: 1px 1px #70bbfb;
+   border-bottom: dotted 1px white;
+}
+
+#body {
+   width: 958px;
+   border: solid 1px white;
+   margin: auto;
+   margin-top: 30px;
+   background: transparent url(/media/images/bodybg.png) repeat-y left top;
+}
+
+#bodyleft { 
+   width: 640px;
+   float: left;
+   background: transparent url(/media/images/bodygradient.png) no-repeat left top;
+}
+
+#bodyright {
+   width: 313px;
+   overflow: hidden;
+   float: right;
+   background: transparent url(/media/images/bodygradient.png) no-repeat right top;
+}
+
+#bodyright:after {
+   clear: both;
+}
+
+#bodyright > *,
+#bodyleft > * {
+   padding: 20px;
+}
+
+#bodyleft h2,
+#bodyleft h3,
+#bodyleft h4 {
+   font-weight: bold;
+   margin-top: 1ex;
+}
+
+#bodyleft h2 {
+   margin-top: 2ex;
+   font-size: 30pt;
+   line-height: 30pt;
+   border-left: solid 8px black;
+   padding-left: 0.4em;
+   text-shadow: 1px 1px 0px gray;
+}
+
+#bodyleft h2 a {
+   text-decoration: none;
+   color: black;
+}
+
+#bodyleft p {
+   text-align: justify;
+   color: black;
+}
+
+#bodyleft p a {
+   color: blue;
+}
+
+#bodyright .content {
+   color: #d0d0d0;
+}
+
+.visualclear {
+   clear: both;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5 {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.content {
+   font-family: Verdana, Helvetica, Arial, sans-serif;
+   font-size: 12px;
+}
+
+.content p {
+   margin: 2ex 0;
+}
+
+ul.metadata { 
+   font-size: 10px;
+   color: #f0f0f0;
+   border-left: solid 8px black;
+   padding-top: 4px;
+}
+
+.metadata li {
+   display: inline;
+   line-height: 10px;
+   border-right: dotted 1px #cfcfcf;
+   padding: 0px 1em;
+}
+
+.metadata li:last-child {
+  border-right: none;
+}
+
+.metadata a {
+   color: #f0f0f0;
+}
+
+footer {
+   clear: both;
+   margin: 20px 0px;
+   background: #f0f0f0;
+   color: gray;
+   display: block;
+   font-size: 10px;
+}
+
+footer address {
+   margin: 20px;
+   padding: 20px;
+}
+
+address a {
+   text-decoration: none;
+   border-bottom: dotted 1px gray;
+}
+
+#posteditor  input[type="text"],
+#posteditor  textarea
+{
+   width: 100%;
+   margin: 0px;
+   padding: 5px;
+}
+
+label {
+   margin-top: 2ex;
+   display: block;
+   font-family: Helvetica, Arial, sans-serif;
+   font-size: 13pt;
+   font-weight: bold;
+}
+
+
+div.box {
+   border: solid 3px #afafaf;
+   padding: 15px;
+   margin-bottom: 10px;
+}
+
+div.box ul.social li {
+   margin-top: 10px;
+   min-height: 20px;
+}
+
+div.box ul.social li a {
+   line-height: 20px ;
+   display: block;
+   color: white;
+   text-decoration: none;
+}
+
+a.facebook {
+   padding-left: 20px;
+   background: transparent url(/media/social/PNG/facebook.png) no-repeat left center;
+}
+
+a.lastfm {
+   padding-left: 20px;
+   background: transparent url(/media/social/PNG/lastfm.png) no-repeat left center;
+}
+
+a.myspace {
+   padding-left: 20px;
+   background: transparent url(/media/social/PNG/myspace.png) no-repeat left center;
+}
+
+a.twitter {
+   padding-left: 20px;
+   background: transparent url(/media/social/PNG/twitter.png) no-repeat left center;
+}
+
+a.youtube{
+   padding-left: 20px;
+   background: transparent url(/media/social/PNG/youtube.png) no-repeat left center;
+}
+
+
+td a {
+   border-bottom: none;
+}
