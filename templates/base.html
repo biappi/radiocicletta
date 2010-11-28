@@ -6,9 +6,9 @@
         <meta http-equiv="content-language" content="it" />
         <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"/>
         <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-        {% block morestyles %}{% endblock %}
         <script type="text/javascript" src="/media/js/jquery.js"></script>
         <script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+        {% block morestyles %}{% endblock %}
         <script type="text/javascript">
             function openPopUp(url,target,attributes) 
             {
@@ -65,6 +65,7 @@
             {% block bodyleft %}{% endblock %}
             </div>
 
+            {% block ext-bodyright %}
             <div id="bodyright">
                 {% block bodyright %}
                     <div class="content">
@@ -104,6 +105,7 @@
                     </div>
                 {% endblock %}
             </div>
+            {% endblock %}
             
             <div class="visualclear"></div>
         </div>
