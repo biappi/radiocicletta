@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block morescripts %}
+
+<script type="text/javascript">//trucchetto perchè funzioni tutto anche a js disabltato
+	//nascondo gli atricoli per l'animazione via js, se non ce l'hai non ti vengono nascosti! VIVA!
+	document.write('<style>article {display:none;}</style>');
+</script>
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery.tweet.js" type="text/javascript"></script> 
+<script type="text/javascript">
+	$(document).ready(function() {	
+$(document).ready(function() {	
+	  			$('#tweet table').tweet({
+            				username: "radiocicletta",
+            				join_text: "auto",
+            				avatar_size: 32,
+            				count: 3,
+            				auto_join_text_default: "we said,",
+            				auto_join_text_ed: "we",
+            				auto_join_text_ing: "we were",
+            				auto_join_text_reply: "we replied to",
+            				auto_join_text_url: "we were checking out",
+            				loading_text: "loading tweets..."
+        			});
+			});
+ 		$('#headmenu > li').click(function(){
+		$("article").hide("blind", {}, 300);
+		});
+	});
+</script>
+{% endblock %}
+{% block morestyles %}
+<link href="/media/css/inettuts.css" rel="stylesheet" type="text/css" />
+<style>
+#columns {
+   width: 313px;
+   overflow: hidden;
+   float: right;
+   background: transparent url(/media/images/bodygradient.png) no-repeat right top;
+}
+
+#columns:after {
+   clear: both;
+}
+#columns > *,
+#bodyleft > * {
+   padding: 20px;
+}
+</style>
+{% endblock %}
+
+{% block bodyleft %}
+<div class="content">
+	{% for post in posts %}
+		<article>
+		<h2><a href="{{ post.get_absolute_url }}">{% if post.draft %}BOZZA - {% endif %}{{ post.title }}</a></h2>
+		<ul class="metadata">
+			<li><a href="{{ post.author.get_absolute_url }}">Autore {{ post.author }}</a></li>
+			<li>{{ post.date|date:"j F, Y" }}</li>
+			<!-- <li><a href="{{ post.get_absolute_url }}#comment">{{ post.comment_count }} Commenti</a></li> -->
+		</ul>
+		{{ post.text }}
+	</article>
+	{% endfor %}
+	<script>
+	$(document).ready(function() {$("article:eq(0)").show("slow", function () {$(this).next("article").show("800", arguments.callee);});});
+	</script>
+</div>
+{% endblock %}
+
+{% block ext-bodyright %}
+
+
+<div id="columns">
+        
+        <ul id="column1" class="column">
+            <li class="widget color-green" id="intro">
+                <div class="widget-head">
+                    <h3>Beta!</h3>
+                </div>
+                <div class="widget-content">
+
+                    <p>Il sito che stai vedendo manca ancora di molte parti fondamentali. Torna a trovarci spesso per vedere
+                     tutte le novita' che aggiungeremo nel tempo!</p>
+                </div>
+            </li>
+            <li class="widget color-red">  
+                <div class="widget-head">
+                    <h3>Social</h3>
+                </div>
+                <div class="widget-content">
+
+                    <ul class="social">
+                     <li><a class="facebook" href="http://www.facebook.com/group.php?gid=122353837775674&ref=share">Gruppo ufficiale su Facebook</a></li>
+                     <li><a class="lastfm" href="http://lastfm.it/group/radiocicletta">Gruppo ufficiale su last.fm</a></li>
+                     <li><a class="myspace" href="http://www.myspace.com/radiocicletta">Pagina ufficiale su Myspace</a></li>
+                     <li><a class="twitter" href="http://twitter.com/radiocicletta">Twitter</a></li>
+                     <li><a class="youtube" href="http://www.youtube.com/user/radiocicletta">Canale ufficiale su youtube</a></li>
+                  </ul>
+                </div>
+            </li>
+        
+            <li class="widget color-blue">  
+                <div class="widget-head">
+                    <h3>Amministrazione</h3>
+                </div>
+                <div class="widget-content">
+
+                    {% if user.is_authenticated %}
+				<li><a href="/accounts/logout/">Esci</a></li>
+				<li><a href="/blog/new/">Nuovo post blog</a></li>
+				{% block moreauthmenu %}{% endblock %}
+			{% else %}
+				<li><a href="/accounts/login/">Sei dei nostri?</a></li>
+			{% endif %}
+                </div>
+            </li>
+
+ 		<li class="widget color-blue">  
+                <div class="widget-head">
+                    <h3>Twitter News</h3>
+                </div>
+                <div class="widget-content">
+ 			<div id="tweet">
+   			<table ></table >
+  			</div>  
+		</div>
+            </li>
+        </ul>
+</div>
+    <script type="text/javascript" src="/media/js/jquery-ui-personalized-1.6rc2.min.js"></script>
+    <script type="text/javascript" src="/media/js/inettuts.js"></script>	
+
+	    {% endblock %}
+
+
+

@@ -6,9 +6,9 @@
       <meta http-equiv="content-language" content="it" />
       <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"/>
       <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-      {% block morestyles %}{% endblock %}
       <script type="text/javascript" src="/media/js/jquery.js"></script>
       <script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+      {% block morestyles %}{% endblock %}
       <script type="text/javascript">
       function openPopUp(url,target,attributes) 
       {
@@ -52,18 +52,17 @@
 	 	<a href="javascript:void(0)" onclick="openPopUp('/media/player/player.shtml', '_new', 'channelmode=no,directories=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=520,height=450')">
 {{ current_show.title }}</a>{% if current_show.authors.all|length %}, con {% for a in current_show.authors.all %}{{ a }}, {% endfor %} {% endif %}
 	 </p>
-
 	{% endif %}
-      </div>
+</div>
 
-      <div id="body">
-         <div id="bodyleft">
-            {% block bodyleft %}{% endblock %}
-         </div>
-
-         <div id="bodyright">
-            {% block bodyright %}
-            <div class="content">
+<div id="body">
+ <div id="bodyleft">
+	{% block bodyleft %}{% endblock %}
+ </div>
+ {% block ext-bodyright %}
+ <div id="bodyright">
+	{% block bodyright %}
+        <div class="content">
                <div class="box">
                   <h2>Beta!</h2>
                   <p>Il sito che stai vedendo manca ancora di molte parti fondamentali. Torna a trovarci spesso per vedere
@@ -78,17 +77,8 @@
                      <li><a class="myspace" href="http://www.myspace.com/radiocicletta">Pagina ufficiale su Myspace</a></li>
                      <li><a class="twitter" href="http://twitter.com/radiocicletta">Twitter</a></li>
                      <li><a class="youtube" href="http://www.youtube.com/user/radiocicletta">Canale ufficiale su youtube</a></li>
-		     <!--
-                     <li><!--
-Skype 'My status' button
-http://www.skype.com/go/skypebuttons
---  
-<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-<a href="skype:radiocicletta?call"><img src="http://mystatus.skype.com/smallclassic/radiocicletta" style="border: none;" width="114" height="20" alt="My status" /></a>
-</li>-->
                   </ul>
                </div>
-
 	       <div class="box">
 	           <h2>Amministrazione</h2>
 		   <ul class="social">
@@ -101,18 +91,16 @@ http://www.skype.com/go/skypebuttons
 			{% endif %}
                    </ul>
 	       </div>
-		{% block bodyright-box %}{% endblock %}
-            </div>
-	    {% endblock %}
-         </div>
-
-         <div class="visualclear"></div>
-      </div>
+	       {% block bodyright-box %}{% endblock %}
+        </div>
+	{% endblock %}
+ </div>
+{% endblock %}
+ <div class="visualclear"></div>
+</div>
 
       <footer>
          <address>Associazione culturale Radiocicletta &mdash; Pisa. <a href="mailto:radiocicletta@gmail.com">radiocicletta@gmail.com</a></address>
       </footer>
-
-      &nbsp;
    </body>
 </html>
