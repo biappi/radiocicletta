@@ -20,6 +20,14 @@ def post_list(request):
 	
 	return render_req_to_resp(request, 'post_list.html', {'posts': posts})
 
+def test_reord(request):
+	posts = Post.objects.all().order_by('-date')
+	
+	if not request.user.is_authenticated():
+		posts = posts.filter(draft__exact = False)
+	
+	return render_req_to_resp(request, 'reord.html', {'posts': posts})
+
 def blog_post(request, slug):
 	post = get_object_or_404(Post, title_slug=slug)
 	return render_req_to_resp(request, 'post.html', {'post': post})
@@ -110,6 +118,28 @@ def shows(request):
 	shows = map(do_dict, ShowSchedule.objects.all())
 	
 	return render_req_to_resp(request, 'shows_schedule.html', {'schedule': shows})
+
+def showsgallery(request):
+	import datetime
+	today = datetime.date.today()
+	delta = datetime.timedelta(-today.weekday())
+	monday = today + delta
+
+	def to_js_date(x):
+		return "new Date(%d, %d, %d, %d, %d, %d)" % (x.year, x.month - 1, x.day, x.hour, x.minute, x.second)
+
+	def do_dict(x):
+		return	{
+				'title': x.show.title,
+				'start': to_js_date(datetime.datetime.combine(monday + x.delta_from_monday(), x.begin)),#time_to_jstime(monday + x.begin_timedelta_from_monday()),
+				'end': to_js_date(datetime.datetime.combine(monday + x.delta_from_monday(), x.end)),#time_to_jstime(monday + x.end_timedelta_from_monday())
+				'url': x.show.get_absolute_url(),
+				'desc': x.show.get_purified_desc()
+			}
+
+	shows = map(do_dict, ShowSchedule.objects.all())
+	
+	return render_req_to_resp(request, 'shows_gallery.html', {'schedule': shows})
 
 def show_info(request, slug):
 	show = get_object_or_404(Show, title_slug=slug)

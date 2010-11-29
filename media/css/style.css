@@ -270,7 +270,7 @@ div.box {
    margin-bottom: 10px;
 }
 div.box:hover { 
-	border: solid 4px #afafaf;
+	border: solid 3px #727272;
 }
 
 div.box ul.social li {
