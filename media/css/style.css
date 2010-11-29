@@ -269,6 +269,9 @@ div.box {
    padding: 15px;
    margin-bottom: 10px;
 }
+div.box:hover { 
+	border: solid 4px #afafaf;
+}
 
 div.box ul.social li {
    margin-top: 10px;
@@ -306,7 +309,10 @@ a.youtube{
    padding-left: 20px;
    background: transparent url(/media/social/PNG/youtube.png) no-repeat left center;
 }
-
+a.external {
+	background: url(/media/images/external.png) center right no-repeat;
+	padding-right: 12px;
+}
 
 td a {
    border-bottom: none;

@@ -6,8 +6,23 @@
         <meta http-equiv="content-language" content="it" />
         <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"/>
         <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/media/css/engage.tblank.css" />
         <script type="text/javascript" src="/media/js/jquery.js"></script>
         <script type="text/javascript" src="/media/js/jquery-ui.min.js"></script>
+<!--	<script type="text/javascript" src="/media/js/engage.tblank-min.js"></script> //esperimento sui link esterni
+	<script type="text/javascript">
+$('body').tblank({
+	internal:	'samewindow',
+	cookie:		true,
+	cookieName:	'RadioCwindowOptions',
+	popupText:	"<p>Hai cliccato su un link esterno a Radiocicletta dove vuoi aprirlo?</p><p>Mi ricordero' della tua decisione</p>"
+}); --><script type="text/javascript">
+		$(document).ready(function() {
+ $("a").filter(function() {return this.hostname && this.hostname !== location.hostname && !($(this).hasClass("lastfm")||$(this).hasClass("facebook")||$(this).hasClass("myspace")||$(this).hasClass("twitter")||$(this).hasClass("youtube"));}).addClass('external'); //metto l'icona sui link esterni 
+												//preservando quelli "social" che gia' hanno l'icona
+
+		});
+	</script>
         {% block morestyles %}{% endblock %}
         <script type="text/javascript">
             function openPopUp(url,target,attributes) 
@@ -69,6 +84,7 @@
             <div id="bodyright">
                 {% block bodyright %}
                     <div class="content">
+
                         <div class="box">
                             <h2>Beta!</h2>
                             <p>
